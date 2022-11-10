@@ -1,0 +1,15 @@
+-- select pb number, from weekday it was used, and how many times it has been used
+--2015-10-7, Oct 7th 2015 The number of main balls is increased to 69, while the Powerball pool is reduced to 26
+
+select pb, datename(weekday,use_date) dayofweekPick, count(*) frequency
+from powerball
+where use_date >= '2015-10-7'
+group by pb, datename(weekday,use_date)
+order by 2,3 desc
+
+-- select pb number, from weekday and month it was used, and how many times it has been used
+select pb, datename(weekday,use_date) dayofweekPick, datepart(m,use_date) MonthPicked, count(*) frequency
+from powerball
+where use_date >= '2015-10-7'
+group by pb, datename(weekday,use_date),datepart(m,use_date)
+order by 3,2,4 desc
